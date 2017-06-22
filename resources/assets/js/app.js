@@ -8,6 +8,11 @@ window.Vue = require('vue');
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
 window.Vue.use(ElementUI);
+import lang from 'element-ui/lib/locale/lang/en';
+import locale from 'element-ui/lib/locale';
+
+// 设置语言
+locale.use(lang);
 
 
 
@@ -19,6 +24,8 @@ window.Vue.use(ElementUI);
 
 Vue.component('navbar', require('./components/Navbar.vue'));
 Vue.component('searchbox', require('./components/SearchForm.vue'));
+Vue.component('tabs', require('./components/HomepageTabs.vue'));
+Vue.component('create-book-form',require('./components/CreateBookForm.vue'));
 
 const app = new Vue({
     el: '#app'

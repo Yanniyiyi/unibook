@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 
 
+
+
 Route::get('email/verify/{confirmation_token}','EmailController@verifyEmail')
     ->name('email.verify');
 
@@ -27,6 +29,14 @@ Route::get('/verify/invalid','EmailController@showInvalidVerify')
 
 Route::get('/user/profile','UserController@showProfile')
     ->name('user.profile');
+
+Route::get('/become-a-seller','UserController@startSelling')
+    ->name('start.selling');
+
+Route::resource('book','BookController');
+Route::get('/book','BookController@index');
+Route::get('/book/created/{id}','BookController@showSuccessInfo')->name('book.created');
+
 
 Auth::routes();
 

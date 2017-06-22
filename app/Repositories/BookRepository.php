@@ -14,6 +14,21 @@ class BookRepository
 {
     public function searchByUniAndName($uni, $name)
     {
-        return Book::where('university_id',$uni)->where('name','like',$name)->get();
+        return Book::where('university_id',$uni)->where('name','like','%' . $name . '%')->get();
+    }
+
+    public function create($attributes)
+    {
+        return Book::create($attributes);
+    }
+
+    public function getBooksByQty($qty)
+    {
+        return Book::orderBy('created_at','desc')->take($qty)->get();
+    }
+
+    public function getAllBooks()
+    {
+        return Book::all();
     }
 }

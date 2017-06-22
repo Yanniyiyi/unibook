@@ -43,6 +43,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
+                            <li><a href="{{ route('start.selling') }}">Become a seller</a></li>
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
@@ -54,6 +55,15 @@
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="{{ route('user.profile') }}">My profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('book.create') }}">Sell book</a>
+                                    </li>
+                                    {{--<li>--}}
+                                        {{--<a href="{{ route('serivice.create') }}">Provide service</a>--}}
+                                    {{--</li>--}}
+                                    <li>
+                                        <a href="{{ route('user.profile') }}">My books</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('logout') }}"

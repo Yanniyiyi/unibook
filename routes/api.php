@@ -21,3 +21,6 @@ Route::middleware('api')->post('/universities/search', 'UniversityController@sea
 
 Route::middleware('api')->post('/books/search', 'BookController@search');
 
+Route::middleware('api')->post('/books/store', 'BookController@store');
+Route::middleware('api')->get('/books/{qty}', 'BookController@index');
+

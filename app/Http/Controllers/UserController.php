@@ -11,4 +11,9 @@ class UserController extends Controller
     {
 
     }
+
+    public function startSelling()
+    {
+        return view('start-selling');
+    }
 }

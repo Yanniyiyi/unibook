@@ -33,6 +33,7 @@
             <el-input v-model="book" placeholder="Book name"></el-input>
         </div>
         <div class="col-md-3">
+            <div>&nbsp;</div>
             <el-button @click="searchBook">Search</el-button>
         </div>
     </div>
@@ -91,3 +92,9 @@
         }
     }
 </script>
+<style scoped>
+    .el-select{
+        width:100%;
+        margin-bottom:11px;
+    }
+</style>

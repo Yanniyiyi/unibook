@@ -20,6 +20,9 @@ class CreateBooksTalbe extends Migration
             $table->text('description');
             $table->json('images');
             $table->integer('university_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->string('phone',100)->default('');
+            $table->string('email',100)->default('');
             $table->timestamps();
         });
     }
