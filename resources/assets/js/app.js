@@ -26,6 +26,8 @@ Vue.component('navbar', require('./components/Navbar.vue'));
 Vue.component('searchbox', require('./components/SearchForm.vue'));
 Vue.component('tabs', require('./components/HomepageTabs.vue'));
 Vue.component('create-book-form',require('./components/CreateBookForm.vue'));
+Vue.component('booklist',require('./components/Booklist.vue'));
+Vue.component('userbookslist',require('./components/Userbooks.vue'));
 
 const app = new Vue({
     el: '#app'

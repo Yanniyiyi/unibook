@@ -23,6 +23,7 @@ class CreateBooksTalbe extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('phone',100)->default('');
             $table->string('email',100)->default('');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

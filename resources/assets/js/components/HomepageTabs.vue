@@ -20,7 +20,7 @@
                     </div>
                     <ul class="list-group">
                         <li class="list-group-item clearfix" v-for="book in books">
-                            <img class="img-responsive img-rounded" src="http://placehold.it/256/163a63" alt=""/>
+                            <img class="img-responsive img-rounded" :src="JSON.parse(book.images).url" alt=""/>
                             <h3 class="list-group-item-heading">
                                 {{ book.name }}
                                 <!--<span class="label label-danger pull-right">NEW !</span>-->
@@ -71,6 +71,7 @@
             getBooks(){
                 axios.get('/api/books/10').then(response => {
                     this.books = response.data;
+                    console.log(this.books);
                 });
             }
         }

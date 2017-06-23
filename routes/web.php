@@ -1,5 +1,7 @@
 <?php
 
+use App\Book;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +39,7 @@ Route::resource('book','BookController');
 Route::get('/book','BookController@index');
 Route::get('/book/created/{id}','BookController@showSuccessInfo')->name('book.created');
 
+Route::get('user/books','UserController@showBooks')->name('user.books');
 
 Auth::routes();
 

@@ -30,6 +30,8 @@ $factory->define(App\Book::class, function(Faker\Generator $faker) {
         'description' => 'test',
         'user_id' => 1,
         'images' => json_encode([]),
+                'phone' => $faker->e164PhoneNumber,
+                'email' => $faker->email,
         'price' => $faker->randomFloat(2,10,50)
     ];
 });

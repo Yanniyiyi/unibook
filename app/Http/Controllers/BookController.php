@@ -6,6 +6,7 @@ use App\Http\Requests\BookSearchRequest;
 use Illuminate\Http\Request;
 use App\Repositories\BookRepository;
 use App\Book;
+use Auth;
 
 
 class BookController extends Controller
@@ -21,17 +22,22 @@ class BookController extends Controller
         $this->bookRepo = $bookRepo;
     }
 
-    public function index($qty = null)
+    public function index(Request $request,$qty = null)
     {
-        if($qty)
+        
+
+        if($request->is('api/*'))
         {
-            $result =  $this->bookRepo->getBooksByQty($qty);
-            return response()->json($result);
+            if($qty)
+            {
+                return  $this->bookRepo->getBooksByQty($qty);
+            }
+
+            return $this->bookRepo->getLatestBooks()->paginate(8);
         }
 
-        $books = $this->bookRepo->getAllBooks();
-        return view('books.index')->with(['books'=> $books]);
-
+        return view('books.index');
+       
     }
 
     public function search(BookSearchRequest $request)
@@ -48,19 +54,25 @@ class BookController extends Controller
 
     public function showSuccessInfo($bookId)
     {
-        return view('books.success')->with(['bookId' => $bookId]);
+        return view('books.success',['bookId' => $bookId]);
     }
 
     public function show(Book $book)
     {
-        return view('books.view')->with(['book' => $book]);
+        return view('books.view',['book' => $book]);
     }
 
     public function store(Request $request)
     {
+        $user = Auth::guard('api')->user();
         $attributes = $request->except('images');
-        $attributes['images'] = json_encode($request->get('images'));
-        $book = $this->bookRepo->create($attributes);
+        $image = $request->file('images');
+        $fileName = md5(time() + $user->id). '.' .
+            $image->getClientOriginalExtension();
+        $image->move(public_path('books'),$fileName);
+        $url = '/books/'. $fileName;
+        $attributes['images'] = json_encode(['url' => $url]);
+        $book = $this->bookRepo->create($user, $attributes);
         $url = route('book.created',['bookId' => $book->id]);
         return response()->json(['url' => $url]);
     }

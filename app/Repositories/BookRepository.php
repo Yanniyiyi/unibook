@@ -17,9 +17,9 @@ class BookRepository
         return Book::where('university_id',$uni)->where('name','like','%' . $name . '%')->get();
     }
 
-    public function create($attributes)
+    public function create($user,$attributes)
     {
-        return Book::create($attributes);
+        return $user->books()->save(new Book($attributes));
     }
 
     public function getBooksByQty($qty)
@@ -27,8 +27,8 @@ class BookRepository
         return Book::orderBy('created_at','desc')->take($qty)->get();
     }
 
-    public function getAllBooks()
+    public function getLatestBooks()
     {
-        return Book::all();
+        return Book::orderBy('created_at','desc');
     }
 }

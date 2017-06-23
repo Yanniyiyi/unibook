@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<booklist :useronly="false"></booklist>
+				<userbookslist></userbookslist>	
 			</div>
 		</div>
 	</div>

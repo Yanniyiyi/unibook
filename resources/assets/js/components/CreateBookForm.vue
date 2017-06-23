@@ -59,7 +59,7 @@
             <el-input
                     type="textarea"
                     :autosize="{ minRows: 4, maxRows: 8}"
-                    placeholder="请输入内容"
+                    placeholder="Description"
                     v-model="description"
                     id="book-desc">
             </el-input>
@@ -71,7 +71,12 @@
 
     </div>
     <div class="col-md-6">
-        
+        <div class="col-md-12">
+            <div class="col-md-8">
+                <input type="file" @change="fileChange" accept="image/*" class="form-control">
+            </div>
+        </div>
+
     </div>
 </div>
 </template>
@@ -114,7 +119,8 @@
                 description:'',
                 free:false,
                 phone:'',
-                email:''
+                email:'',
+                images:null
             }
         },
         methods:{
@@ -135,9 +141,32 @@
                     this.price = "";
                 }
             },
+            fileChange(e){
+                let files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+               // this.createImage(files[0]);
+               this.images = files[0];
+            },
+            createImage(file){
+                let reader = new FileReader();
+                let vm = this;
+                reader.onload = (e) => {
+                    vm.images = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
             submit(){
-                axios.post('/api/books/store',{'university_id':this.university_id,'name':this.book,
-                'price':this.price,'description':this.description,'images':[]}).then(response => {
+                let data = new FormData();
+                // for single file
+                data.append('images', this.images);
+                data.append('university_id',this.university_id);
+                data.append('name',this.book);
+                data.append('price',this.price);
+                data.append('description',this.description);
+                data.append('phone',this.phone);
+                data.append('email',this.email);
+                axios.post('/api/books/store',data).then(response => {
                         window.location = response.data.url;
                 });
             }

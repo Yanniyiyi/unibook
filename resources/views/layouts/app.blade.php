@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('css')
 </head>
 <body>
     <div id="app">
@@ -63,7 +64,7 @@
                                         {{--<a href="{{ route('serivice.create') }}">Provide service</a>--}}
                                     {{--</li>--}}
                                     <li>
-                                        <a href="{{ route('user.profile') }}">My books</a>
+                                        <a href="{{ route('user.books') }}">My books</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('logout') }}"

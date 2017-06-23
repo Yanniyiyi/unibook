@@ -21,6 +21,10 @@ Route::middleware('api')->post('/universities/search', 'UniversityController@sea
 
 Route::middleware('api')->post('/books/search', 'BookController@search');
 
-Route::middleware('api')->post('/books/store', 'BookController@store');
-Route::middleware('api')->get('/books/{qty}', 'BookController@index');
+Route::middleware('auth:api')->post('/books/store', 'BookController@store');
+Route::middleware('api')->get('/books/{qty?}', 'BookController@index');
+
+Route::middleware('auth:api')->get('/user/{type}/books', 'UserController@getBooks');
+Route::middleware('auth:api')->delete('/delete/{id}','UserController@deleteBook');
+
 
