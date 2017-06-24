@@ -52,11 +52,11 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			@if(json_decode($book->images)->url)
+			@if(json_decode($book->images))
 			<img src="{{ json_decode($book->images)->url}}" alt="" style="width: 100%;
     height: auto;">
 			@else
-			<img src="" alt="" style="  width: 100%;
+			<img src="http://via.placeholder.com/400?text=Seller+is+lazy" alt="" style="  width: 100%;
     height: auto;">
     		@endif
 		</div>

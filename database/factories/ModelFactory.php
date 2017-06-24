@@ -26,10 +26,10 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Book::class, function(Faker\Generator $faker) {
     return [
         'name' => $faker->name,
-        'university_id' => rand(0,51),
+        'university_id' => rand(1,43),
         'description' => 'test',
         'user_id' => 1,
-        'images' => json_encode([]),
+    'images' => json_encode([]),
                 'phone' => $faker->e164PhoneNumber,
                 'email' => $faker->email,
         'price' => $faker->randomFloat(2,10,50)

@@ -86,7 +86,7 @@
             },
             searchBook(){
                 axios.post('/api/books/search',{'state':this.state,'university':this.university,'name':this.book}).then(response => {
-
+                    this.$store.commit('updateSearchResult',response.data);
                 });
             }
         }

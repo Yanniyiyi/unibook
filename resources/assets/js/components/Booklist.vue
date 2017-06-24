@@ -40,7 +40,6 @@
         return {
             pagination: {},
             currentPage: 1
-
         }
        },
        computed:{

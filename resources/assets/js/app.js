@@ -7,9 +7,13 @@ require('./bootstrap');
 window.Vue = require('vue');
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
+import Vuex from 'vuex'
+
+window.Vue.use(Vuex)
 window.Vue.use(ElementUI);
 import lang from 'element-ui/lib/locale/lang/en';
 import locale from 'element-ui/lib/locale';
+
 
 // 设置语言
 locale.use(lang);
@@ -29,6 +33,24 @@ Vue.component('create-book-form',require('./components/CreateBookForm.vue'));
 Vue.component('booklist',require('./components/Booklist.vue'));
 Vue.component('userbookslist',require('./components/Userbooks.vue'));
 
+const store = new Vuex.Store({
+	state:{
+		searchResult:null
+	},
+	mutations: {
+		updateSearchResult(state,result){
+			state.searchResult = result;
+		}
+	},
+	actions:{
+		'updateSearchResult':function(store,result){
+			store.commit('updateSearchResult',result);
+		}
+	}
+})
+
+
 const app = new Vue({
-    el: '#app'
+	store,
+    el: '#app',
 });
